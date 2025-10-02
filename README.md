@@ -8,7 +8,7 @@ Initial setup for coursework project.
 Douglas Stewart
 
 Scrum assistant:
-Kamil 
+Kamil Wcislo
 
 Scrum meetings:
 Friday 19th
