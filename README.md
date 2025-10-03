@@ -19,7 +19,7 @@ in attendance:
 
 Discuss in meeting:
     how to set everything up in gitHub
-    who is creating the organisation
+    who is creating the organisation 
     which roles are going to who for the scrum leaders
     discussed when the next meeting would be
 
