@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de2af561-0a18-4149-83a6-85dc4ff3c958" name="Changes" comment="adding gitignore file (second attempt)">
+    <list default="true" id="de2af561-0a18-4149-83a6-85dc4ff3c958" name="Changes" comment="taking scrum meetings text out of read me">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="editable-svg" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -38,6 +44,9 @@
     &quot;accountId&quot;: &quot;fd047dd0-a0c3-4415-90e7-1a222ebdea8a&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -61,6 +70,23 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+        <item itemvalue="Docker.Dockerfile" />
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -110,7 +136,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760539683305</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="changing where scrum meetings are held">
+      <option name="closed" value="true" />
+      <created>1760540421310</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760540421310</updated>
+    </task>
+    <task id="LOCAL-00006" summary="taking scrum meetings text out of read me">
+      <option name="closed" value="true" />
+      <created>1760540570840</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760540570840</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +174,8 @@
     <MESSAGE value="creating new branch" />
     <MESSAGE value="adding gitignore file" />
     <MESSAGE value="adding gitignore file (second attempt)" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding gitignore file (second attempt)" />
+    <MESSAGE value="changing where scrum meetings are held" />
+    <MESSAGE value="taking scrum meetings text out of read me" />
+    <option name="LAST_COMMIT_MESSAGE" value="taking scrum meetings text out of read me" />
   </component>
 </project>
