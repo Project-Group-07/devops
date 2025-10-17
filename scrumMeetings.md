@@ -40,3 +40,34 @@ Douglas
 Discuss in meeting:
 Code of conduct defined
 make sure all the tasks are completed
+
+Scrum meetings:
+Friday 10th
+in attendance:
+Viktor
+Douglas
+Rayan
+
+Discuss in meeting:
+Integrating Zube into the project
+
+Scrum meetings:
+Monday 13th
+in attendance:
+Viktor
+Douglas
+Kamil
+
+Discuss in meeting:
+See what everyone has done so far and delegate the tasks that are left to complete
+
+Scrum meetings:
+Wednesday 15th
+in attendance:
+Viktor
+Douglas
+Kamil
+
+Discuss in meeting:
+Use case diagram
+Starting to code
