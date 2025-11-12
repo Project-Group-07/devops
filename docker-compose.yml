@@ -1,0 +1,9 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - "33060:3306"
+    volumes:
+      - ./world.sql:/docker-entrypoint-initdb.d/world.sql:ro

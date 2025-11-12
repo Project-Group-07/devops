@@ -4,23 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.population</groupId>
-    <artifactId>setMethods</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <!-- ЯВНО ПОДКЛЮЧАЕМ ЦЕНТРАЛЬНЫЕ РЕПОЗИТОРИИ -->
-    <repositories>
-        <repository>
-            <id>maven-central</id>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>maven-central-plugins</id>
-            <url>https://repo1.maven.org/maven2/</url>
-        </pluginRepository>
-    </pluginRepositories>
+    <groupId>com.napier.sem</groupId>
+    <artifactId>population-reports</artifactId>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -31,7 +17,7 @@
     </properties>
 
     <dependencies>
-        <!-- JDBC-драйвер -->
+        <!-- MySQL -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -49,38 +35,62 @@
 
     <build>
         <plugins>
-            <!-- ТЕСТЫ -->
+            <!-- unit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.2.5</version>
                 <configuration>
                     <useModulePath>false</useModulePath>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*IT.java</exclude>
+                        <exclude>**/*IntegrationTest.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
 
-            <!-- ПОКРЫТИЕ -->
+            <!-- integration tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <includes>
+                        <include>**/*IT.java</include>
+                        <include>**/*IntegrationTest.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.11</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
+                        <goals><goal>prepare-agent</goal></goals>
                     </execution>
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
+                        <goals><goal>report</goal></goals>
                     </execution>
                 </executions>
             </plugin>
 
-            <!-- FAT JAR -->
+            <!-- fat JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -90,7 +100,9 @@
                         <phase>package</phase>
                         <goals><goal>shade</goal></goals>
                         <configuration>
+                            <finalName>app</finalName> <!-- => target/app.jar -->
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.napier.sem.App</mainClass>
@@ -100,6 +112,7 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 </project>
