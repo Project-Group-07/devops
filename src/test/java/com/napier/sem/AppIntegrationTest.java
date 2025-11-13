@@ -1,18 +1,22 @@
 package com.napier.sem;
 
 import org.junit.jupiter.api.*;
+
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AppIntegrationTest {
-    App app;
+
+    private App app;
 
     @BeforeAll
     void init() {
         String host = System.getenv("DB_HOST");
         String delay = System.getenv("DB_DELAY_MS");
-        if (host == null || host.isBlank()) host = "localhost:33060";
+        if (host == null || host.isBlank())
+            host = "localhost:33060";
         int delayMs = (delay == null || delay.isBlank()) ? 30000 : Integer.parseInt(delay);
 
         app = new App();
@@ -20,11 +24,14 @@ public class AppIntegrationTest {
     }
 
     @AfterAll
-    void done() { app.disconnect(); }
+    void done() {
+        app.disconnect();
+    }
 
     @Test
     void world_population_positive() {
-        assertTrue(app.getWorldPopulation() > 0);
+        long pop = app.getWorldPopulation();
+        assertTrue(pop > 0);
     }
 
     @Test
@@ -32,16 +39,32 @@ public class AppIntegrationTest {
         List<Country> list = app.getCountriesWorldByPopulationDesc();
         assertNotNull(list);
         assertTrue(list.size() > 0);
-        for (int i = 1; i < list.size(); i++)
-            assertTrue(list.get(i-1).population >= list.get(i).population);
+        for (int i = 1; i < list.size(); i++) {
+            assertTrue(list.get(i - 1).population >= list.get(i).population);
+        }
     }
 
     @Test
     void topN_continent_limit_and_sort() {
-        var list = app.getTopNCountriesInContinent("Europe", 10);
+        List<Country> list = app.getTopNCountriesInContinent("Europe", 10);
         assertNotNull(list);
         assertTrue(list.size() <= 10);
-        for (int i = 1; i < list.size(); i++)
-            assertTrue(list.get(i-1).population >= list.get(i).population);
+        for (int i = 1; i < list.size(); i++) {
+            assertTrue(list.get(i - 1).population >= list.get(i).population);
+        }
+    }
+
+    @Test
+    void topN_continent_zero_returnsEmpty() {
+        List<Country> list = app.getTopNCountriesInContinent("Europe", 0);
+        assertNotNull(list);
+        assertEquals(0, list.size());
+    }
+
+    @Test
+    void topN_continent_null_returnsEmpty() {
+        List<Country> list = app.getTopNCountriesInContinent(null, 5);
+        assertNotNull(list);
+        assertEquals(0, list.size());
     }
 }

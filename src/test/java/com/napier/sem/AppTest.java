@@ -1,36 +1,51 @@
 package com.napier.sem;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
+
     @Test
-    void topN_guard() {
-        App a = new App();
-        assertFalse(a.isValidTopN(0));
-        assertFalse(a.isValidTopN(-3));
-        assertTrue(a.isValidTopN(5));
+    void isValidTopN_positive() {
+        App app = new App();
+        assertTrue(app.isValidTopN(5));
     }
 
     @Test
-    void formatCountryRow_ok() {
-        App a = new App();
+    void isValidTopN_zero_false() {
+        App app = new App();
+        assertFalse(app.isValidTopN(0));
+    }
+
+    @Test
+    void isValidTopN_negative_false() {
+        App app = new App();
+        assertFalse(app.isValidTopN(-3));
+    }
+
+    @Test
+    void formatCountryRow_null_returnsEmpty() {
+        App app = new App();
+        assertEquals("", app.formatCountryRow(null));
+    }
+
+    @Test
+    void formatCountryRow_normal_containsFields() {
+        App app = new App();
         Country c = new Country();
-        c.code = "GBR";
-        c.name = "United Kingdom";
+        c.code = "UKR";
+        c.name = "Ukraine";
         c.continent = "Europe";
-        c.region = "British Islands";
-        c.population = 60000000L;
-        c.capitalName = "London";
-        String row = a.formatCountryRow(c);
-        assertNotNull(row);
-        assertTrue(row.contains("United Kingdom"));
-        assertTrue(row.contains("60000000"));
-    }
+        c.region = "Eastern Europe";
+        c.population = 44000000;
+        c.capitalName = "Kyiv";
 
-    @Test
-    void formatCountryRow_nullSafe() {
-        App a = new App();
-        assertEquals("", a.formatCountryRow(null));
+        String row = app.formatCountryRow(c);
+        assertTrue(row.contains("UKR"));
+        assertTrue(row.contains("Ukraine"));
+        assertTrue(row.contains("Europe"));
+        assertTrue(row.contains("Kyiv"));
     }
 }
+

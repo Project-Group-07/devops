@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [ devekop ]
+  pull_request:
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Run unit tests (Surefire)
+        run: mvn -B test
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Start MySQL with docker-compose
+        run: |
+          docker compose up -d
+          echo "Waiting for database health..."
+          for i in {1..40}; do
+            cid=$(docker ps -q --filter "name=devops-db-1")
+            if [ -z "$cid" ]; then
+              cid=$(docker ps -q --filter "ancestor=mysql:8.0")
+            fi
+            if [ -n "$cid" ]; then
+              status=$(docker inspect --format='{{json .State.Health.Status}}' "$cid" 2>/dev/null || echo "\"starting\"")
+              echo "Health status: $status"
+              if [ "$status" = "\"healthy\"" ]; then
+                echo "Database is healthy"
+                break
+              fi
+            fi
+            sleep 3
+          done
+
+      - name: Run integration tests (Failsafe)
+        env:
+          DB_HOST: localhost:33060
+          DB_DELAY_MS: "0"
+        run: mvn -B verify
+
+      - name: Upload JaCoCo report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco
+
+      - name: Stop containers
+        if: always()
+        run: docker compose down -v
