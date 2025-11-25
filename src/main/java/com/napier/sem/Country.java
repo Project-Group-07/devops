@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+/** Country report row. */
 public class Country {
     public String code;
     public String name;
