@@ -39,7 +39,8 @@ jobs:
 
       - name: Start MySQL with docker-compose
         run: |
-          docker compose up -d
+          # поднимаем ТОЛЬКО базу, без сервиса app
+          docker compose up -d db
           echo "Waiting for database health..."
           for i in {1..40}; do
             cid=$(docker ps -q --filter "name=devops-db-1")
