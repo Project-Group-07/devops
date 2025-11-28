@@ -1,0 +1,73 @@
+name: 🐛 Bug Report
+description: Report a bug to help us improve this project
+title: "[BUG] <short description>"
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: >
+        Please provide a clear and concise description of the issue.
+        If applicable, add screenshots to help explain your problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce the problem?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment details
+      description: What platform are you running the app on?
+      placeholder: |
+        OS: Windows 10 / macOS 12 / Ubuntu 22.04
+        Browser/App version
+        Hardware/GPU details (if relevant)
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Screenshots / logs
+      description: If applicable, add screenshots or log output.
+      render: shell
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How impactful is the issue?
+      options:
+        - 🔥 Critical - broke the app or major function
+        - ⚠️ Major - key functionality affected
+        - 🐞 Minor - doesn’t break workflow but annoying
+        - 💅 Cosmetic - visual or small issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Anything else we should know?
