@@ -1,4 +1,4 @@
-name: 🐛 Bug Report
+name:  Bug Report
 description: Report a bug to help us improve this project
 title: "[BUG] <short description>"
 labels: ["bug"]
@@ -59,10 +59,10 @@ body:
       label: Severity
       description: How impactful is the issue?
       options:
-        - 🔥 Critical - broke the app or major function
-        - ⚠️ Major - key functionality affected
-        - 🐞 Minor - doesn’t break workflow but annoying
-        - 💅 Cosmetic - visual or small issue
+        - Critical - broke the app or major function
+        -  Major - key functionality affected
+        -  Minor - doesn’t break workflow but annoying
+        -  Cosmetic - visual or small issue
     validations:
       required: true
 
